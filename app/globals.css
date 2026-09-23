@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  /* Football turf palette: chalk-white lines, cut-grass greens, deep pitch shade */
+  --color-pitch: #063a1d;
+  --color-turf: #14a44d;
+  --color-lime: #9ede3f;
+  --color-chalk: #f4f8f1;
+  --color-ink: #0d1c14;
+  --color-stone: #5f7268;
+  --color-line: #dde8d9;
+
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-turf);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-lime);
+    color: var(--color-pitch);
+  }
+}
+
+/* Mown turf stripes — used behind the hero and dark sections */
+.turf-stripes {
+  background-image: repeating-linear-gradient(
+    90deg,
+    #0a5c2e 0 8%,
+    #0d7038 8% 16%
+  );
+}
+
+.turf-stripes-soft {
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(20, 164, 77, 0.06) 0 40px,
+    rgba(20, 164, 77, 0.12) 40px 80px
+  );
+}
+
+/* Chalk line grid for light sections */
+.chalk-grid {
+  background-image: linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.body-lock {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

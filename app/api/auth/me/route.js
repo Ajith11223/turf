@@ -1,0 +1,20 @@
+import { NextResponse } from "next/server";
+import { getSession } from "@/lib/auth";
+
+export const runtime = "nodejs";
+
+// GET /api/auth/me — who is signed in, if anyone.
+export async function GET() {
+  const session = await getSession();
+  if (!session) {
+    return NextResponse.json({ user: null }, { status: 401 });
+  }
+  return NextResponse.json({
+    user: {
+      id: session.sub,
+      email: session.email,
+      name: session.name,
+      role: session.role
+    }
+  });
+}
