@@ -188,20 +188,15 @@ export default function Hero() {
         <div className="absolute inset-x-0 bottom-0 z-50 h-40 bg-gradient-to-t from-pitch to-transparent" />
       </motion.div>
 
-      {/* 5 — copy */}
+      {/* 4 — copy */}
       <motion.div
         style={{ y: copyY, opacity: copyFade }}
         className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-28 pt-32 sm:px-8"
       >
         <MaskedWords
-          text="Roll out the pitch."
-          className="font-display text-[13vw] font-extrabold leading-[0.88] text-chalk drop-shadow-[0_10px_24px_rgba(2,10,6,0.8)] sm:text-[9vw] lg:text-[7.5rem]"
-        />
-        <MaskedWords
-          as="h2"
-          text="Then never stop playing."
-          delay={0.22}
-          className="font-display text-[13vw] font-extrabold leading-[0.88] text-lime drop-shadow-[0_10px_24px_rgba(2,10,6,0.8)] sm:text-[9vw] lg:text-[7.5rem]"
+          text="Building the Future of Sports Infrastructure."
+          className="font-display text-[13vw] font-extrabold leading-[0.88] text-white drop-shadow-[0_10px_24px_rgba(2,10,6,0.8)] sm:text-[9vw] lg:text-[7.5rem]"
+          style={{ textShadow: "0 8px 30px rgba(0,0,0,0.45)" }}
         />
 
         <motion.div
@@ -210,22 +205,24 @@ export default function Hero() {
           transition={{ delay: 1, duration: 0.7, ease }}
           className="mt-10 flex max-w-3xl flex-col gap-7 sm:flex-row sm:items-center"
         >
-          <p className="text-base leading-relaxed text-chalk/75 sm:max-w-sm">
-            Football turf, athletic tracks, courts and indoor floors — designed, built,
-            laid and maintained by one team.
+          <p className="text-base leading-relaxed text-white/85 sm:max-w-xl">
+            We design, build and maintain world-class sports facilities that bring
+            performance, durability and innovation together.
           </p>
           <div className="flex shrink-0 gap-3">
             <Link
-              href="/contact"
+              href="https://wa.me/919958677005"
+              target="_blank"
+              rel="noreferrer"
               className="rounded-full bg-lime px-6 py-3 text-sm font-semibold text-pitch transition hover:bg-chalk"
             >
-              Get a turf quote
+              Get a Free Quote
             </Link>
             <Link
               href="/services"
-              className="rounded-full border border-chalk/30 px-6 py-3 text-sm font-semibold text-chalk transition hover:border-lime hover:text-lime"
+              className="rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-lime hover:text-lime"
             >
-              See how we build
+              Explore our work
             </Link>
           </div>
         </motion.div>

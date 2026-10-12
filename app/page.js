@@ -3,7 +3,7 @@ import Image from "next/image";
 import Hero from "@/components/Hero";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import LeadForm from "@/components/LeadForm";
-import { Reveal, MaskedWords, Counter, Marquee, ImageReveal, TiltCard } from "@/components/motion-bits";
+import { Reveal, MaskedWords, Marquee, ImageReveal, TiltCard, StatCard } from "@/components/motion-bits";
 import { stats, process as buildSteps, surfaces, partners } from "@/lib/site";
 import { getServices, getProjects, getTestimonials } from "@/lib/content";
 import { images } from "@/lib/images";
@@ -24,12 +24,7 @@ export default async function HomePage() {
       <section className="border-b border-line bg-white">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-line lg:grid-cols-4">
           {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.08} className="bg-white p-8">
-              <p className="font-display text-5xl font-extrabold text-turf">
-                <Counter to={s.value} suffix={s.suffix} />
-              </p>
-              <p className="mt-2 text-sm text-stone">{s.label}</p>
-            </Reveal>
+            <StatCard key={s.label} value={s.value} suffix={s.suffix} label={s.label} delay={i * 0.1} />
           ))}
         </div>
       </section>

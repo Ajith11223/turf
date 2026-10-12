@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { motion, useInView, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 
 /** Fades + lifts a block into view once. */
 export function Reveal({ children, delay = 0, y = 28, className = "" }) {
@@ -20,10 +20,10 @@ export function Reveal({ children, delay = 0, y = 28, className = "" }) {
 }
 
 /** Headline that reveals word by word from behind a mask. */
-export function MaskedWords({ text, className = "", delay = 0, as: Tag = "h1" }) {
+export function MaskedWords({ text, className = "", delay = 0, as: Tag = "h1", style = {} }) {
   const words = text.split(" ");
   return (
-    <Tag className={className}>
+    <Tag className={className} style={style}>
       {words.map((w, i) => (
         <span key={`${w}-${i}`} className="inline-block overflow-hidden align-bottom">
           <motion.span
@@ -76,6 +76,37 @@ export function Counter({ to, suffix = "", duration = 1.6 }) {
       {value}
       {suffix}
     </span>
+  );
+}
+
+/** Staggered count-up tile for homepage stats. */
+export function StatCard({ value, suffix = "", label, delay = 0 }) {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={reduceMotion ? { duration: 0 } : { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={reduceMotion ? undefined : { y: -5, transition: { duration: 0.2 } }}
+      className="group relative overflow-hidden bg-white p-8 transition-shadow duration-300 hover:shadow-[0_14px_32px_rgba(6,58,29,0.12)]"
+    >
+      <motion.span
+        aria-hidden="true"
+        initial={reduceMotion ? false : { scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={reduceMotion ? { duration: 0 } : { duration: 0.8, delay: delay + 0.2, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-x-0 top-0 h-1 origin-left bg-gradient-to-r from-turf via-lime to-transparent"
+      />
+      <p className="font-display text-5xl font-extrabold text-turf transition-colors duration-300 group-hover:text-pitch">
+        <Counter to={value} suffix={suffix} />
+      </p>
+      <p className="mt-2 text-sm text-stone transition-colors duration-300 group-hover:text-ink">
+        {label}
+      </p>
+    </motion.div>
   );
 }
 
