@@ -10,8 +10,8 @@
   --color-stone: #5f7268;
   --color-line: #dde8d9;
 
-  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Arial Black", "Segoe UI", sans-serif;
+  --font-body: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 @keyframes marquee {
