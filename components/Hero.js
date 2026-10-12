@@ -12,6 +12,7 @@ const ease = [0.22, 1, 0.36, 1];
 
 /* Mown stripes roll out one band at a time, like turf being laid. */
 const stripes = Array.from({ length: 10 });
+const glowDots = Array.from({ length: 6 });
 
 export default function Hero() {
   const ref = useRef(null);
@@ -44,13 +45,41 @@ export default function Hero() {
             fill
             priority
             sizes="100vw"
-            className="object-cover"
+            className="object-cover brightness-110 contrast-105"
           />
         </motion.div>
-        <div className="absolute inset-0 z-10 bg-pitch/45" />
+        <div className="absolute inset-0 z-10 bg-pitch/10" />
+
+        <div className="pointer-events-none absolute inset-0 z-15 opacity-70">
+          {glowDots.map((_, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0.15, scale: 0.8 }}
+              animate={{
+                opacity: [0.12, 0.38, 0.18, 0.28],
+                scale: [0.8, 1.2, 0.95, 1.1],
+                x: [0, 18, -12, 10, 0],
+                y: [0, -22, 12, -16, 0]
+              }}
+              transition={{
+                duration: 8 + i,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.7
+              }}
+              style={{
+                left: `${12 + i * 16}%`,
+                top: `${18 + (i % 3) * 22}%`,
+                width: `${90 + i * 26}px`,
+                height: `${90 + i * 26}px`
+              }}
+              className="absolute rounded-full bg-lime/10 blur-3xl"
+            />
+          ))}
+        </div>
 
         {/* 2 — mown turf stripes wipe up from the ground */}
-        <div className="absolute inset-x-0 bottom-0 z-20 flex h-[62%] origin-bottom opacity-60">
+        <div className="absolute inset-x-0 bottom-0 z-20 flex h-[62%] origin-bottom opacity-35">
           {stripes.map((_, i) => (
             <motion.span
               key={i}
@@ -58,7 +87,7 @@ export default function Hero() {
               animate={{ scaleY: 1 }}
               transition={{ duration: 0.9, delay: 0.15 + i * 0.07, ease }}
               className={`h-full flex-1 origin-bottom ${
-                i % 2 === 0 ? "bg-[#0a5c2e]/45" : "bg-[#0e7a3c]/30"
+                i % 2 === 0 ? "bg-[#0a5c2e]/20" : "bg-[#0e7a3c]/15"
               }`}
             />
           ))}
@@ -73,8 +102,8 @@ export default function Hero() {
         >
           <motion.g
             fill="none"
-            stroke="rgba(244,248,241,0.22)"
-            strokeWidth="2.5"
+            stroke="rgba(244,248,241,0.12)"
+            strokeWidth="1.7"
             initial="hidden"
             animate="show"
             transform="matrix(1,0,0,0.5,0,240)"
@@ -128,22 +157,22 @@ export default function Hero() {
 
         {/* 4 — a ball rolls across the halfway line */}
         <motion.div
-          initial={{ x: "-12vw", opacity: 0 }}
-          animate={{ x: "108vw", opacity: [0, 1, 1, 0] }}
+          initial={{ x: "-10vw", y: 0, opacity: 0 }}
+          animate={{ x: "112vw", y: [0, -18, 12, 0], opacity: [0, 1, 1, 0] }}
           transition={{
-            duration: 9,
+            duration: 8,
             delay: 2.4,
             repeat: Infinity,
-            repeatDelay: 4,
-            ease: "linear",
-            opacity: { duration: 9, times: [0, 0.06, 0.9, 1], repeat: Infinity, repeatDelay: 4 }
+            repeatDelay: 2.5,
+            ease: "easeInOut",
+            opacity: { duration: 8, times: [0, 0.08, 0.88, 1], repeat: Infinity, repeatDelay: 2.5 }
           }}
-          className="absolute bottom-[22%] left-0 z-40 h-10 w-10"
+          className="absolute bottom-[22%] left-0 z-40 h-12 w-12"
           aria-hidden="true"
         >
           <motion.div
             animate={{ rotate: 1080 }}
-            transition={{ duration: 9, repeat: Infinity, repeatDelay: 4, ease: "linear" }}
+            transition={{ duration: 8, repeat: Infinity, repeatDelay: 2.5, ease: "linear" }}
             className="h-full w-full"
           >
             <svg viewBox="0 0 40 40" className="h-full w-full drop-shadow-lg">
@@ -164,16 +193,6 @@ export default function Hero() {
         style={{ y: copyY, opacity: copyFade }}
         className="relative z-60 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-28 pt-32 sm:px-8"
       >
-        <motion.p
-          initial={{ opacity: 0, x: -12 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mb-6 flex items-center gap-3 text-sm text-lime"
-        >
-          <span className="h-px w-10 bg-lime" />
-          FIFA-quality football turf, built in India
-        </motion.p>
-
         <MaskedWords
           text="Roll out the pitch."
           className="font-display text-[13vw] font-extrabold leading-[0.88] text-chalk sm:text-[9vw] lg:text-[7.5rem]"
