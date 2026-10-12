@@ -38,8 +38,8 @@ export default function Hero() {
           transition={{ duration: 6, ease: "easeOut" }}
           className="absolute inset-0"
         >
-          <Image
-            src={images.hero}
+          <img
+            src={"https://cdn.uploadtourl.com/5db96983_hero.jpeg"}
             alt="Floodlit football turf at dusk"
             fill
             priority
@@ -212,7 +212,7 @@ export default function Hero() {
         </motion.div>
 
         {/* floating spec card */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 40, rotate: -3 }}
           animate={{ opacity: 1, y: 0, rotate: -3 }}
           transition={{ delay: 1.4, duration: 0.8, ease }}
@@ -232,7 +232,7 @@ export default function Hero() {
               site before handover.
             </p>
           </div>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
 
       {/* 6 — partner ticker */}
