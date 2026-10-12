@@ -147,7 +147,7 @@ export function ImageReveal({ src, alt, className = "", imgClassName = "", prior
         whileInView={{ scale: 1 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className="h-full w-full"
+        className="relative h-full w-full"
       >
         <Image
           src={src}

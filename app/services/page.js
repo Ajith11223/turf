@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Reveal, MaskedWords, ImageReveal } from "@/components/motion-bits";
-import { surfaces } from "@/lib/site";
+import { Reveal, ImageReveal } from "@/components/motion-bits";
 import { getServices } from "@/lib/content";
 import { images } from "@/lib/images";
 
@@ -19,30 +18,39 @@ export default async function ServicesPage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-pitch px-5 pb-20 pt-40 text-chalk sm:px-8 sm:pt-48">
+      <section className="relative overflow-hidden bg-pitch px-5 pb-20 pt-32 text-chalk sm:px-8 sm:pt-40">
         <Image
-          src={images.services.installation}
+          src={images.hero}
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-25"
+          className="services-hero-image object-cover brightness-75"
         />
-        <div className="turf-stripes absolute inset-0 opacity-20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-pitch/70 via-pitch/35 to-pitch/10" />
+        <div className="turf-stripes absolute inset-0 opacity-10" />
         <div className="relative mx-auto max-w-7xl">
           <p className="mb-6 flex items-center gap-3 text-sm text-lime">
             <span className="h-px w-10 bg-lime" />
-            Services
+            Our core services
           </p>
-          <MaskedWords
-            text="Six stages. One accountable team."
-            className="max-w-4xl font-display text-5xl font-extrabold sm:text-7xl"
-          />
+          <p className="mb-4 text-xs font-semibold tracking-[0.18em] text-chalk/65">
+            COMPLETE SPORTS INFRASTRUCTURE
+          </p>
+          <h1 className="services-hero-copy max-w-5xl font-display text-5xl font-extrabold uppercase leading-[0.98] tracking-normal drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] sm:text-6xl lg:text-7xl">
+            One Partner. Complete Sports Solutions.
+          </h1>
           <p className="mt-8 max-w-xl leading-relaxed text-chalk/75">
-            Most facilities fail at the handover between vendors. We removed the handovers —
-            the people who draw it are the people who pour the base, lay the surface and come
-            back to service it.
+            From a single court to a complete multi-sport facility, SPORTICON delivers
+            integrated sports infrastructure solutions tailored to your requirements.
           </p>
+          <Link
+            href="#core-services"
+            className="mt-8 inline-flex items-center gap-3 text-sm font-semibold text-lime transition-colors hover:text-white"
+          >
+            Explore services
+            <span aria-hidden="true">↓</span>
+          </Link>
           {source === "fallback" && (
             <p className="mt-6 inline-block rounded-full border border-chalk/25 px-3 py-1 text-xs text-chalk/60">
               Showing built-in sample content — the content API is unavailable
@@ -51,90 +59,61 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl space-y-20 px-5 sm:px-8">
-          {services.map((s, i) => (
-            <article
-              key={s.slug || s._id}
-              className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${
-                i % 2 ? "lg:[&>figure]:order-2" : ""
-              }`}
-            >
-              <figure className="m-0">
-                <ImageReveal
-                  src={s.image || images.services[s.slug] || images.hero}
-                  alt={s.title}
-                  className="h-[300px] rounded-2xl sm:h-[420px]"
-                />
-              </figure>
-              <Reveal delay={0.1}>
-                <span className="font-display text-sm font-semibold text-turf">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h2 className="mt-3 text-3xl sm:text-4xl">
-                  <Link href={`/services/${s.slug}`} className="hover:text-turf">
-                    {s.title}
-                  </Link>
-                </h2>
-                <p className="mt-3 text-lg text-turf">{s.lead}</p>
-                <p className="mt-5 leading-relaxed text-stone">{s.body}</p>
-                <ul className="mt-7 flex flex-wrap gap-2">
-                  {s.deliverables.map((d) => (
-                    <li
-                      key={d}
-                      className="rounded-full border border-line px-3 py-1 text-xs text-ink"
-                    >
-                      {d}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={`/services/${s.slug}`}
-                  className="mt-7 inline-block rounded-full border border-line px-6 py-2.5 text-sm font-semibold text-ink transition hover:border-turf hover:text-turf"
+      <section id="core-services" className="bg-chalk py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl space-y-16 px-5 sm:space-y-24 sm:px-8">
+            {services.map((s, i) => (
+              <Reveal key={s.slug || s._id} delay={i * 0.07}>
+                <article
+                  className={`grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-16 ${
+                    i % 2 ? "md:[&>figure]:order-2" : ""
+                  }`}
                 >
-                  Read more about {s.title.toLowerCase()}
-                </Link>
-              </Reveal>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-t border-line bg-chalk py-24">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <h2 className="font-display text-3xl font-extrabold">Surfaces you can pick from</h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {surfaces.map((s, i) => (
-              <Reveal key={s.name} delay={(i % 4) * 0.07}>
-                <div className="overflow-hidden rounded-2xl border border-line bg-white">
-                  <div className="relative h-44">
-                    <Image
-                      src={s.image}
-                      alt={s.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 25vw"
-                      className="object-cover"
+                  <figure className="group m-0">
+                    <ImageReveal
+                      src={s.image || images.services[s.slug] || images.hero}
+                      alt={s.title}
+                      className="h-[280px] rounded-2xl sm:h-[420px]"
+                      imgClassName="transition-transform duration-700 group-hover:scale-105"
                     />
+                  </figure>
+                  <div className="py-3 lg:py-8">
+                    <span className="mb-5 block h-1 w-12 rounded-full bg-lime" />
+                    <h2 className="font-display text-3xl font-extrabold sm:text-4xl">
+                      <Link
+                        href={`/services/${s.slug}`}
+                        className="transition-colors hover:text-turf"
+                      >
+                        {s.title}
+                      </Link>
+                    </h2>
+                    {s.lead && <p className="mt-3 text-lg font-medium text-turf">{s.lead}</p>}
+                    <p className="mt-5 max-w-xl leading-relaxed text-stone">{s.body}</p>
+                    {s.deliverables?.length > 0 && (
+                      <ul className="mt-6 flex flex-wrap gap-2">
+                        {s.deliverables.map((d) => (
+                          <li
+                            key={d}
+                            className="rounded-full border border-line px-3 py-1 text-xs text-ink"
+                          >
+                            {d}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <Link
+                      href={`/services/${s.slug}`}
+                      className="mt-7 inline-flex items-center gap-3 border-b border-turf/40 pb-2 text-sm font-semibold text-turf transition-colors hover:border-lime hover:text-pitch"
+                    >
+                      Explore service
+                      <span aria-hidden="true">→</span>
+                    </Link>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-lg">{s.name}</h3>
-                    <p className="mt-2 text-sm text-stone">{s.spec}</p>
-                  </div>
-                </div>
+                </article>
               </Reveal>
             ))}
-          </div>
-
-          <Reveal className="mt-14">
-            <Link
-              href="/contact"
-              className="inline-block rounded-full bg-turf px-7 py-3 text-sm font-semibold text-white transition hover:bg-pitch"
-            >
-              Get a drawing for your site
-            </Link>
-          </Reveal>
         </div>
       </section>
+
     </>
   );
 }
