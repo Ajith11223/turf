@@ -60,10 +60,12 @@ export default async function AboutPage() {
             About Sporticon
           </Reveal>
 
-          <MaskedWords
-            text="ENGINEERING BETTER SPACES FOR SPORTS"
-            className="max-w-5xl font-display text-4xl font-extrabold uppercase leading-[0.9] tracking-[-0.06em] sm:text-6xl lg:text-[5rem]"
-          />
+          <div className="max-w-5xl">
+            <MaskedWords
+              text="ENGINEERING BETTER SPACES FOR SPORTS"
+              className="font-display text-4xl font-extrabold uppercase leading-[0.9] tracking-[-0.06em] sm:text-6xl lg:text-[5rem]"
+            />
+          </div>
 
           <Reveal className="mt-8 max-w-3xl">
             <p className="text-lg leading-relaxed text-white/80 sm:text-xl">
@@ -96,40 +98,46 @@ export default async function AboutPage() {
           </Reveal>
 
           <Reveal delay={0.08} className="flex flex-col justify-center">
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.28em] text-[#0d5a2d]">
+            <Reveal delay={0.1} className="mb-3 text-sm font-bold uppercase tracking-[0.28em] text-[#0d5a2d]">
               Who we are
-            </p>
-            <h2 className="font-display text-4xl font-extrabold tracking-[-0.06em] text-ink sm:text-5xl">
+            </Reveal>
+            <Reveal delay={0.14} className="font-display text-4xl font-extrabold tracking-[-0.06em] text-ink sm:text-5xl">
               From Empty Spaces to Game-Ready Facilities.
-            </h2>
+            </Reveal>
 
             <div className="mt-6 space-y-5 text-lg leading-relaxed text-stone">
-              <p>
-                Sporticon Infra Private Limited is a sports infrastructure development company
-                dedicated to creating high-quality sporting facilities that combine performance,
-                durability, safety and innovation.
-              </p>
-              <p>
-                With over a decade of industry experience and more than 250 completed
-                projects, we work with schools, educational institutions, sports academies,
-                clubs, government organisations, residential communities and private investors
-                across India.
-              </p>
-              <p>
-                From the initial concept and planning to construction, installation and
-                maintenance, we bring together technical expertise and project coordination to
-                transform spaces into purpose-built sporting environments.
-              </p>
+              <Reveal delay={0.18}>
+                <p>
+                  Sporticon Infra Private Limited is a sports infrastructure development company
+                  dedicated to creating high-quality sporting facilities that combine performance,
+                  durability, safety and innovation.
+                </p>
+              </Reveal>
+              <Reveal delay={0.22}>
+                <p>
+                  With over a decade of industry experience and more than 250 completed
+                  projects, we work with schools, educational institutions, sports academies,
+                  clubs, government organisations, residential communities and private investors
+                  across India.
+                </p>
+              </Reveal>
+              <Reveal delay={0.26}>
+                <p>
+                  From the initial concept and planning to construction, installation and
+                  maintenance, we bring together technical expertise and project coordination to
+                  transform spaces into purpose-built sporting environments.
+                </p>
+              </Reveal>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <Reveal delay={0.3} className="mt-8 flex flex-wrap gap-3">
               <span className="rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink">
                 10+ Years Experience
               </span>
               <span className="rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink">
                 End-to-End Delivery
               </span>
-            </div>
+            </Reveal>
           </Reveal>
         </div>
       </section>
