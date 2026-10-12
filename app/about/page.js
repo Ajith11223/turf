@@ -40,7 +40,7 @@ export default async function AboutPage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-[#0d1c14] text-chalk">
+      <section className="relative min-h-[100svh] overflow-hidden bg-[#0d1c14] text-chalk">
         <div className="absolute inset-0">
           <Image
             src="/images/hero.jpeg"
@@ -48,27 +48,26 @@ export default async function AboutPage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-80"
+            className="object-cover brightness-110 contrast-105"
           />
         </div>
 
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,28,20,0.92)_0%,rgba(13,28,20,0.82)_38%,rgba(13,28,20,0.42)_100%)]" />
+        <div className="absolute inset-0 bg-[#05170d]/20" />
+        <div className="absolute inset-x-0 bottom-0 z-20 h-[62%] bg-gradient-to-t from-[#05170d]/45 to-transparent" />
 
-        <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
-          <Reveal className="mb-8 inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.28em] text-lime">
-            <span className="h-px w-10 bg-lime" />
+        <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-28 pt-32 sm:px-8">
+          <Reveal className="mb-8 inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.28em] text-white">
+            <span className="h-px w-10 bg-white" />
             About Sporticon
           </Reveal>
 
-          <div className="max-w-5xl">
-            <MaskedWords
-              text="ENGINEERING BETTER SPACES FOR SPORTS"
-              className="font-display text-4xl font-extrabold uppercase leading-[0.9] tracking-[-0.06em] sm:text-6xl lg:text-[5rem]"
-            />
-          </div>
+          <MaskedWords
+            text="ENGINEERING BETTER SPACES FOR SPORTS"
+            className="max-w-5xl font-display text-[13vw] font-extrabold uppercase leading-[0.88] tracking-[-0.08em] text-white drop-shadow-[0_12px_30px_rgba(2,10,6,0.9)] sm:text-[9vw] lg:text-[7.5rem]"
+          />
 
           <Reveal className="mt-8 max-w-3xl">
-            <p className="text-lg leading-relaxed text-white/80 sm:text-xl">
+            <p className="text-base leading-relaxed text-white sm:text-xl">
               Sporticon Infra Private Limited is a sports infrastructure development company
               dedicated to creating high-quality sporting facilities that combine performance,
               durability, safety and innovation.

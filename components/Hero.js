@@ -48,7 +48,7 @@ export default function Hero() {
             className="object-cover brightness-110 contrast-105"
           />
         </motion.div>
-        <div className="absolute inset-0 z-10 bg-pitch/10" />
+        <div className="absolute inset-0 z-10 bg-[#05170d]/35" />
 
         <div className="pointer-events-none absolute inset-0 z-15 opacity-70">
           {glowDots.map((_, i) => (
@@ -191,17 +191,17 @@ export default function Hero() {
       {/* 5 — copy */}
       <motion.div
         style={{ y: copyY, opacity: copyFade }}
-        className="relative z-60 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-28 pt-32 sm:px-8"
+        className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-28 pt-32 sm:px-8"
       >
         <MaskedWords
           text="Roll out the pitch."
-          className="font-display text-[13vw] font-extrabold leading-[0.88] text-chalk sm:text-[9vw] lg:text-[7.5rem]"
+          className="font-display text-[13vw] font-extrabold leading-[0.88] text-chalk drop-shadow-[0_10px_24px_rgba(2,10,6,0.8)] sm:text-[9vw] lg:text-[7.5rem]"
         />
         <MaskedWords
           as="h2"
           text="Then never stop playing."
           delay={0.22}
-          className="font-display text-[13vw] font-extrabold leading-[0.88] text-lime sm:text-[9vw] lg:text-[7.5rem]"
+          className="font-display text-[13vw] font-extrabold leading-[0.88] text-lime drop-shadow-[0_10px_24px_rgba(2,10,6,0.8)] sm:text-[9vw] lg:text-[7.5rem]"
         />
 
         <motion.div

@@ -83,27 +83,39 @@ export default function Header() {
         animate={hidden ? "hidden" : "visible"}
         variants={{ visible: { y: 0 }, hidden: { y: "-115%" } }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-          solid && !open ? "border-b border-line bg-white/90 backdrop-blur-md" : "bg-transparent"
+        className={`fixed inset-x-0 top-0 z-[100] transition-all duration-300 ${
+          solid && !open
+            ? "border-b border-[#0d7f6b]/20 bg-[#f5f8f2]/95 shadow-[0_12px_32px_rgba(13,28,20,0.12)] backdrop-blur-xl"
+            : "bg-transparent"
         }`}
       >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
-          <Link href="/" className="flex items-center gap-3">
-            <span className="grid h-9 w-9 place-items-center rounded-md bg-turf font-display text-lg font-extrabold text-white">
-              G
-            </span>
-            <span className={`font-display text-lg font-extrabold tracking-tight ${text}`}>
-              Gallant Sports
-            </span>
+          <Link href="/" className="flex items-center gap-3 rounded-full ring-1 ring-[#0d7f6b]/0 transition hover:ring-[#0d7f6b]/20">
+            <Image
+              src="/images/sporticon-logo.svg"
+              alt="Sporticon logo"
+              width={220}
+              height={56}
+              priority
+              className="h-8 w-auto sm:h-10"
+            />
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className={`hidden items-center gap-1 rounded-full border px-2 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-sm lg:flex ${
+            solid && !open ? "border-[#0d7f6b]/10 bg-white/80" : "border-white/10 bg-white/5"
+          }`}>
             {nav.map((n) => (
               <Link
                 key={n.href}
                 href={n.href}
-                className={`text-sm font-medium transition-colors hover:text-turf ${
-                  pathname === n.href ? "text-turf" : muted
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                  pathname === n.href
+                    ? solid && !open
+                      ? "bg-[#0d1c14] text-white shadow-sm"
+                      : "bg-white text-[#0d1c14] shadow-sm"
+                    : solid && !open
+                      ? "text-[#0d1c14] hover:bg-[#0d7f6b]/5"
+                      : `${muted} hover:bg-white/5 hover:text-white`
                 }`}
               >
                 {n.label}
@@ -114,7 +126,11 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden rounded-full bg-turf px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-pitch sm:block"
+              className={`hidden rounded-full px-5 py-2.5 text-sm font-semibold transition hover:translate-y-[-1px] sm:block ${
+                solid && !open
+                  ? "bg-[#0d1c14] text-white shadow-[0_12px_30px_rgba(13,28,20,0.20)]"
+                  : "bg-gradient-to-r from-[#1dbd91] to-[#0d7f6b] text-white shadow-[0_12px_30px_rgba(13,127,107,0.35)] hover:shadow-[0_16px_35px_rgba(13,127,107,0.45)]"
+              }`}
             >
               Plan a pitch
             </Link>
@@ -124,8 +140,10 @@ export default function Header() {
               aria-expanded={open}
               aria-controls="menu-modal"
               aria-label={open ? "Close menu" : "Open menu"}
-              className={`relative z-[60] grid h-11 w-11 place-items-center rounded-full border transition ${
-                open || onDarkHero ? "border-chalk/30 bg-white/10" : "border-line bg-white"
+              className={`relative z-[60] grid h-11 w-11 place-items-center rounded-full border transition-all ${
+                open || onDarkHero
+                  ? "border-white/40 bg-white/10 shadow-[0_8px_24px_rgba(255,255,255,0.08)]"
+                  : "border-white/15 bg-white/10 shadow-[0_8px_24px_rgba(13,28,20,0.12)]"
               }`}
             >
               <span className="relative block h-3.5 w-5">
@@ -142,7 +160,7 @@ export default function Header() {
                     transition={{ duration: 0.3 }}
                     style={{ top: i * 6 }}
                     className={`absolute left-0 block h-0.5 w-5 ${
-                      open || onDarkHero ? "bg-chalk" : "bg-ink"
+                      open || onDarkHero ? "bg-white" : "bg-[#0d1c14]"
                     }`}
                   />
                 ))}
