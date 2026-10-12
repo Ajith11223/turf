@@ -30,16 +30,16 @@ export default function Hero() {
       {/* 1 — photo bed, slow Ken Burns push */}
       <motion.div
         style={{ y: fieldY, scale: fieldScale }}
-        className="absolute inset-0"
+        className="absolute inset-0 z-0"
       >
         <motion.div
           initial={{ scale: 1.18 }}
           animate={{ scale: 1 }}
           transition={{ duration: 6, ease: "easeOut" }}
-          className="absolute inset-0"
+          className="absolute inset-0 z-0"
         >
-          <img
-            src={"https://cdn.uploadtourl.com/5db96983_hero.jpeg"}
+          <Image
+            src={images.hero}
             alt="Floodlit football turf at dusk"
             fill
             priority
@@ -47,10 +47,10 @@ export default function Hero() {
             className="object-cover"
           />
         </motion.div>
-        <div className="absolute inset-0 bg-pitch/75" />
+        <div className="absolute inset-0 z-10 bg-pitch/45" />
 
         {/* 2 — mown turf stripes wipe up from the ground */}
-        <div className="absolute inset-x-0 bottom-0 flex h-[62%] origin-bottom">
+        <div className="absolute inset-x-0 bottom-0 z-20 flex h-[62%] origin-bottom opacity-60">
           {stripes.map((_, i) => (
             <motion.span
               key={i}
@@ -58,7 +58,7 @@ export default function Hero() {
               animate={{ scaleY: 1 }}
               transition={{ duration: 0.9, delay: 0.15 + i * 0.07, ease }}
               className={`h-full flex-1 origin-bottom ${
-                i % 2 === 0 ? "bg-[#0a5c2e]/80" : "bg-[#0e7a3c]/70"
+                i % 2 === 0 ? "bg-[#0a5c2e]/45" : "bg-[#0e7a3c]/30"
               }`}
             />
           ))}
@@ -68,13 +68,13 @@ export default function Hero() {
         <svg
           viewBox="0 0 1200 520"
           preserveAspectRatio="xMidYMax slice"
-          className="absolute inset-x-0 bottom-0 h-[62%] w-full"
+          className="absolute inset-x-0 bottom-0 z-30 h-[62%] w-full"
           aria-hidden="true"
         >
           <motion.g
             fill="none"
-            stroke="rgba(244,248,241,0.55)"
-            strokeWidth="3"
+            stroke="rgba(244,248,241,0.22)"
+            strokeWidth="2.5"
             initial="hidden"
             animate="show"
             transform="matrix(1,0,0,0.5,0,240)"
@@ -138,7 +138,7 @@ export default function Hero() {
             ease: "linear",
             opacity: { duration: 9, times: [0, 0.06, 0.9, 1], repeat: Infinity, repeatDelay: 4 }
           }}
-          className="absolute bottom-[22%] left-0 h-10 w-10"
+          className="absolute bottom-[22%] left-0 z-40 h-10 w-10"
           aria-hidden="true"
         >
           <motion.div
@@ -156,13 +156,13 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-pitch to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 z-50 h-40 bg-gradient-to-t from-pitch to-transparent" />
       </motion.div>
 
       {/* 5 — copy */}
       <motion.div
         style={{ y: copyY, opacity: copyFade }}
-        className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-28 pt-32 sm:px-8"
+        className="relative z-60 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-28 pt-32 sm:px-8"
       >
         <motion.p
           initial={{ opacity: 0, x: -12 }}
