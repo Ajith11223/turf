@@ -30,8 +30,8 @@ export default async function HomePage() {
       </section>
 
       {/* Surfaces */}
-      <section className="bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <section className="home-surfaces-background py-24 sm:py-32">
+        <div className="home-surfaces-panel mx-4 max-w-7xl overflow-hidden rounded-3xl border border-line/70 px-5 py-8 sm:mx-6 sm:px-8 sm:py-12 lg:mx-auto">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <MaskedWords
               as="h2"
