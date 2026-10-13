@@ -3,6 +3,7 @@ import Image from "next/image";
 import Hero from "@/components/Hero";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import LeadForm from "@/components/LeadForm";
+import PatternWaveLayer from "@/components/PatternWaveLayer";
 import ScrollStack, { ScrollStackItem } from "@/src/component/ScrollStack";
 import { Reveal, MaskedWords, Marquee, ImageReveal, TiltCard, StatCard } from "@/components/motion-bits";
 import { stats, process as buildSteps, surfaces, partners } from "@/lib/site";
@@ -22,8 +23,9 @@ export default async function HomePage() {
       <Hero />
 
       {/* Stats */}
-      <section className="border-b border-line bg-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-line lg:grid-cols-4">
+      <section className="wave-section relative border-b border-line bg-white">
+        <PatternWaveLayer />
+        <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-2 gap-px bg-line lg:grid-cols-4">
           {stats.map((s, i) => (
             <StatCard key={s.label} value={s.value} suffix={s.suffix} label={s.label} delay={i * 0.1} />
           ))}
@@ -31,8 +33,9 @@ export default async function HomePage() {
       </section>
 
       {/* Surfaces */}
-      <section className="bg-white py-24 sm:py-32">
-        <div className="mx-4 max-w-7xl px-5 py-8 sm:mx-6 sm:px-8 sm:py-12 lg:mx-auto">
+      <section className="wave-section relative bg-white py-24 sm:py-32">
+        <PatternWaveLayer />
+        <div className="relative z-10 mx-4 max-w-7xl px-5 py-8 sm:mx-6 sm:px-8 sm:py-12 lg:mx-auto">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <MaskedWords
               as="h2"
@@ -86,9 +89,10 @@ export default async function HomePage() {
       </section>
 
       {/* Process on pitch green */}
-      <section className="relative overflow-hidden bg-pitch py-24 text-chalk sm:py-32">
+      <section className="wave-section relative overflow-hidden bg-pitch py-24 text-chalk sm:py-32">
         <div className="turf-stripes absolute inset-0 opacity-25" />
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+        <PatternWaveLayer />
+        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
           <MaskedWords
             as="h2"
             text="One team from the first drawing to the tenth service visit."
@@ -107,8 +111,9 @@ export default async function HomePage() {
       </section>
 
       {/* Services with photos */}
-      <section className="bg-chalk py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <section className="wave-section relative bg-chalk py-24 sm:py-32">
+        <PatternWaveLayer />
+        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <MaskedWords
               as="h2"
@@ -154,8 +159,9 @@ export default async function HomePage() {
       </section>
 
       {/* Split feature */}
-      <section className="bg-white py-24 sm:py-32">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-2">
+      <section className="wave-section relative bg-white py-24 sm:py-32">
+        <PatternWaveLayer />
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-2">
           <ImageReveal
             src={images.about.story}
             alt="Installation crew rolling out football turf"
@@ -193,58 +199,65 @@ export default async function HomePage() {
       </section>
 
       {/* Projects */}
-      <section className="overflow-hidden bg-chalk py-24 sm:py-32">
-        <div className="mx-auto mb-12 max-w-7xl px-5 sm:px-8">
+      <section className="wave-section relative overflow-hidden bg-chalk py-24 sm:py-32">
+        <PatternWaveLayer />
+        <div className="relative z-10 mx-auto mb-12 max-w-7xl px-5 sm:px-8">
           <MaskedWords
             as="h2"
             text="Recently handed over"
             className="font-display text-4xl font-extrabold sm:text-5xl"
           />
         </div>
-        <Marquee className="py-2">
-          {projects.map((p) => (
-            <article
-              key={p._id || p.name}
-              className="w-[340px] shrink-0 overflow-hidden rounded-2xl border border-line bg-white"
-            >
-              <div className="relative h-48">
-                <Image
-                  src={p.image || images.hero}
-                  alt={p.name}
-                  fill
-                  sizes="340px"
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl">{p.name}</h3>
-                <p className="mt-1 text-sm text-stone">
-                  {p.place} · {p.area}
-                </p>
-                <p className="mt-3 text-sm font-medium text-turf">{p.type}</p>
-              </div>
-            </article>
-          ))}
-        </Marquee>
+        <div className="relative z-10">
+          <Marquee className="py-2">
+            {projects.map((p) => (
+              <article
+                key={p._id || p.name}
+                className="w-[340px] shrink-0 overflow-hidden rounded-2xl border border-line bg-white"
+              >
+                <div className="relative h-48">
+                  <Image
+                    src={p.image || images.hero}
+                    alt={p.name}
+                    fill
+                    sizes="340px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl">{p.name}</h3>
+                  <p className="mt-1 text-sm text-stone">
+                    {p.place} · {p.area}
+                  </p>
+                  <p className="mt-3 text-sm font-medium text-turf">{p.type}</p>
+                </div>
+              </article>
+            ))}
+          </Marquee>
+        </div>
       </section>
 
       {/* Partners */}
-      <section className="overflow-hidden border-y border-line bg-white py-16">
-        <p className="mx-auto mb-8 max-w-7xl px-5 text-sm text-stone sm:px-8">
+      <section className="wave-section relative overflow-hidden border-y border-line bg-white py-16">
+        <PatternWaveLayer />
+        <p className="relative z-10 mx-auto mb-8 max-w-7xl px-5 text-sm text-stone sm:px-8">
           Manufacturing partners
         </p>
-        <Marquee slow>
-          {partners.map((p) => (
-            <span key={p} className="font-display text-2xl font-semibold text-ink/35">
-              {p}
-            </span>
-          ))}
-        </Marquee>
+        <div className="relative z-10">
+          <Marquee slow>
+            {partners.map((p) => (
+              <span key={p} className="font-display text-2xl font-semibold text-ink/35">
+                {p}
+              </span>
+            ))}
+          </Marquee>
+        </div>
       </section>
 
       {/* Testimonials */}
-      <section className="bg-white py-24 sm:py-32">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.5fr_1fr]">
+      <section className="wave-section relative bg-white py-24 sm:py-32">
+        <PatternWaveLayer />
+        <div className="relative z-10 mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.5fr_1fr]">
           <Reveal>
             <h2 className="font-display text-4xl font-extrabold sm:text-5xl">
               What clients say
@@ -263,7 +276,7 @@ export default async function HomePage() {
       </section>
 
       {/* Lead form */}
-      <section className="relative overflow-hidden bg-pitch py-24 text-chalk sm:py-32">
+      <section className="wave-section relative overflow-hidden bg-pitch py-24 text-chalk sm:py-32">
         <Image
           src={images.hero}
           alt=""
@@ -271,7 +284,8 @@ export default async function HomePage() {
           sizes="100vw"
           className="object-cover opacity-15"
         />
-        <div className="relative mx-auto grid max-w-7xl gap-14 px-5 sm:px-8 lg:grid-cols-[0.8fr_1fr]">
+        <PatternWaveLayer />
+        <div className="relative z-10 mx-auto grid max-w-7xl gap-14 px-5 sm:px-8 lg:grid-cols-[0.8fr_1fr]">
           <Reveal>
             <h2 className="font-display text-4xl font-extrabold sm:text-5xl">
               Have a site? Let us call you back.

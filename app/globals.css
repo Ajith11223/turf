@@ -221,6 +221,24 @@
   box-shadow: none;
 }
 
+.wave-section {
+  isolation: isolate;
+}
+
+.pattern-wave-layer {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.pattern-wave-layer .pattern-waves {
+  position: absolute;
+  inset: 0;
+}
+
 .body-lock {
   overflow: hidden;
 }

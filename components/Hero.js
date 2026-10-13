@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { BlurText, MaskedWords } from "@/components/motion-bits";
 import StarBorder from "@/src/component/StarBorder";
+import PatternWaveLayer from "@/components/PatternWaveLayer";
 import { images } from "@/lib/images";
 import { partners } from "@/lib/site";
 
@@ -28,7 +29,7 @@ export default function Hero() {
   const copyFade = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
   return (
-    <section ref={ref} className="relative min-h-[100svh] overflow-hidden bg-pitch">
+    <section ref={ref} className="wave-section relative min-h-[100svh] overflow-hidden bg-pitch">
       {/* 1 — photo bed, slow Ken Burns push */}
       <motion.div
         style={{ y: fieldY, scale: fieldScale }}
@@ -188,6 +189,8 @@ export default function Hero() {
 
         <div className="absolute inset-x-0 bottom-0 z-50 h-40 bg-gradient-to-t from-pitch to-transparent" />
       </motion.div>
+
+      <PatternWaveLayer />
 
       {/* 4 — copy */}
       <motion.div
