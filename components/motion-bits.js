@@ -46,6 +46,40 @@ export function MaskedWords({ text, className = "", delay = 0, as: Tag = "h1", s
   );
 }
 
+/** Reveals words from a soft blur as they enter the viewport. */
+export function BlurText({ text, className = "", delay = 200, direction = "top", stepDuration = 0.35 }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.1 });
+  const reduceMotion = useReducedMotion();
+  const words = text.split(" ");
+  const initial = {
+    filter: "blur(10px)",
+    opacity: 0,
+    y: direction === "top" ? -20 : 20
+  };
+
+  return (
+    <p ref={ref} className={className} style={{ display: "flex", flexWrap: "wrap" }}>
+      {words.map((word, index) => (
+        <motion.span
+          key={`${word}-${index}`}
+          initial={reduceMotion ? false : initial}
+          animate={reduceMotion || inView ? { filter: "blur(0px)", opacity: 1, y: 0 } : initial}
+          transition={{
+            duration: reduceMotion ? 0 : stepDuration,
+            delay: reduceMotion ? 0 : (index * delay) / 1000,
+            ease: [0.22, 1, 0.36, 1]
+          }}
+          className="inline-block will-change-[transform,filter,opacity]"
+        >
+          {word}
+          {index < words.length - 1 ? "\u00a0" : ""}
+        </motion.span>
+      ))}
+    </p>
+  );
+}
+
 /** Counts up to a number when scrolled into view. */
 export function Counter({ to, suffix = "", duration = 1.6 }) {
   const ref = useRef(null);

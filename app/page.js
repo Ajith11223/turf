@@ -3,6 +3,7 @@ import Image from "next/image";
 import Hero from "@/components/Hero";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import LeadForm from "@/components/LeadForm";
+import ScrollStack, { ScrollStackItem } from "@/src/component/ScrollStack";
 import { Reveal, MaskedWords, Marquee, ImageReveal, TiltCard, StatCard } from "@/components/motion-bits";
 import { stats, process as buildSteps, surfaces, partners } from "@/lib/site";
 import { getServices, getProjects, getTestimonials } from "@/lib/content";
@@ -30,8 +31,8 @@ export default async function HomePage() {
       </section>
 
       {/* Surfaces */}
-      <section className="home-surfaces-background py-24 sm:py-32">
-        <div className="home-surfaces-panel mx-4 max-w-7xl overflow-hidden rounded-3xl border border-line/70 px-5 py-8 sm:mx-6 sm:px-8 sm:py-12 lg:mx-auto">
+      <section className="bg-white py-24 sm:py-32">
+        <div className="mx-4 max-w-7xl px-5 py-8 sm:mx-6 sm:px-8 sm:py-12 lg:mx-auto">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <MaskedWords
               as="h2"
@@ -44,26 +45,35 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {surfaces.map((s, i) => (
-              <Reveal key={s.name} delay={(i % 4) * 0.07}>
-                <article className="group overflow-hidden rounded-2xl border border-line bg-white">
-                  <div className="relative h-52 overflow-hidden">
-                    <Image
-                      src={s.image}
-                      alt={s.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 25vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl">{s.name}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-stone">{s.spec}</p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
+          <div className="mt-14">
+            <ScrollStack
+              useWindowScroll
+              smoothScroll={false}
+              itemDistance={180}
+              itemStackDistance={24}
+              stackPosition="12%"
+              itemScale={0.04}
+              baseScale={0.92}
+              dimAmount={0.12}
+              holdDistance={220}
+              className="home-surfaces-stack"
+            >
+              {surfaces.map((s) => (
+                <ScrollStackItem key={s.name} itemClassName="home-surface-card">
+                  <article className="group h-full overflow-hidden rounded-2xl bg-white">
+                    <div className="relative h-full w-full overflow-hidden">
+                      <Image
+                        src={images.hero}
+                        alt="Football turf at dusk"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 80rem"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
+                  </article>
+                </ScrollStackItem>
+              ))}
+            </ScrollStack>
           </div>
         </div>
       </section>

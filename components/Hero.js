@@ -4,7 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { MaskedWords } from "@/components/motion-bits";
+import { BlurText, MaskedWords } from "@/components/motion-bits";
+import StarBorder from "@/src/component/StarBorder";
 import { images } from "@/lib/images";
 import { partners } from "@/lib/site";
 
@@ -205,19 +206,29 @@ export default function Hero() {
           transition={{ delay: 1, duration: 0.7, ease }}
           className="mt-10 flex max-w-3xl flex-col gap-7 sm:flex-row sm:items-center"
         >
-          <p className="text-base leading-relaxed text-white/85 sm:max-w-xl">
-            We design, build and maintain world-class sports facilities that bring
-            performance, durability and innovation together.
-          </p>
+          <BlurText
+            text="We design, build and maintain world-class sports facilities that bring performance, durability and innovation together."
+            className="text-base leading-relaxed text-white/85 sm:max-w-xl"
+            delay={65}
+            stepDuration={0.4}
+          />
           <div className="flex shrink-0 gap-3">
-            <Link
+            <StarBorder
+              as={Link}
               href="https://wa.me/919958677005"
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-lime px-6 py-3 text-sm font-semibold text-pitch transition hover:bg-chalk"
+              className="text-sm font-semibold"
+              color="#d9ff70"
+              trailColor="#9ede3f"
+              backgroundColor="#9ede3f"
+              textColor="#063a1d"
+              borderColor="rgba(244, 248, 241, 0.3)"
+              radius={999}
+              sparkle
             >
               Get a Free Quote
-            </Link>
+            </StarBorder>
             <Link
               href="/services"
               className="rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-lime hover:text-lime"

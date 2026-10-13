@@ -208,12 +208,17 @@
   animation: chalk-grid-drift 22s ease-in-out infinite alternate;
 }
 
-.home-surfaces-background {
-  background-image: linear-gradient(135deg, #ffffff 0%, #f3faed 38%, #dcefd4 100%);
+.home-surfaces-stack .scroll-stack__inner {
+  padding-inline: 0;
 }
 
-.home-surfaces-panel {
-  background: linear-gradient(135deg, #fcfffa 0%, #eaf6e4 42%, #d1eac8 100%);
+.scroll-stack-card.home-surface-card {
+  height: 24rem;
+  padding: 0;
+  border-radius: 1rem;
+  background: transparent;
+  color: var(--color-ink);
+  box-shadow: none;
 }
 
 .body-lock {
