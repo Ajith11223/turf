@@ -69,6 +69,13 @@ export default async function HomePage() {
                         sizes="(max-width: 768px) 100vw, 80rem"
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
+                      <div className="absolute inset-0 z-10 bg-pitch/45" />
+                      <div className="absolute inset-x-0 bottom-0 z-20 p-6 text-white">
+                        <h3 className="text-2xl font-bold">{s.name}</h3>
+                        <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/85">
+                          {s.spec}
+                        </p>
+                      </div>
                     </div>
                   </article>
                 </ScrollStackItem>
