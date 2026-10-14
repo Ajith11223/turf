@@ -133,6 +133,15 @@
 }
 
 @layer base {
+  :root {
+    --turf-green-gradient: linear-gradient(
+      135deg,
+      #f4f8f1 0%,
+      #e3f1db 52%,
+      #c6e3b4 100%
+    );
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
@@ -140,6 +149,7 @@
 
   body {
     background-color: #ffffff;
+    background-image: var(--turf-green-gradient);
     color: var(--color-ink);
     font-family: var(--font-body);
     overflow-x: hidden;
@@ -165,6 +175,10 @@
     background: var(--color-lime);
     color: var(--color-pitch);
   }
+}
+
+.bg-white:not(input):not(textarea) {
+  background-image: var(--turf-green-gradient);
 }
 
 /* Mown turf stripes — used behind the hero and dark sections */
@@ -230,6 +244,12 @@
   z-index: 0;
   inset: 0;
   overflow: hidden;
+  background-image: linear-gradient(
+    135deg,
+    rgba(6, 58, 29, 0.18),
+    rgba(20, 164, 77, 0.1) 52%,
+    rgba(158, 222, 63, 0.18)
+  );
   opacity: 0.2;
   pointer-events: none;
 }

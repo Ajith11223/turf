@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useInView, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
+import PatternWaveLayer from "@/components/PatternWaveLayer";
 
 /** Fades + lifts a block into view once. */
 export function Reveal({ children, delay = 0, y = 28, className = "" }) {
@@ -124,22 +125,25 @@ export function StatCard({ value, suffix = "", label, delay = 0 }) {
       viewport={{ once: true, margin: "-60px" }}
       transition={reduceMotion ? { duration: 0 } : { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
       whileHover={reduceMotion ? undefined : { y: -5, transition: { duration: 0.2 } }}
-      className="group relative overflow-hidden bg-white p-8 transition-shadow duration-300 hover:shadow-[0_14px_32px_rgba(6,58,29,0.12)]"
+      className="group relative overflow-hidden bg-pitch p-8 text-chalk transition-shadow duration-300 hover:shadow-[0_14px_32px_rgba(6,58,29,0.12)]"
     >
+      <PatternWaveLayer />
       <motion.span
         aria-hidden="true"
         initial={reduceMotion ? false : { scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
         transition={reduceMotion ? { duration: 0 } : { duration: 0.8, delay: delay + 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-x-0 top-0 h-1 origin-left bg-gradient-to-r from-turf via-lime to-transparent"
+        className="absolute inset-x-0 top-0 z-10 h-1 origin-left bg-gradient-to-r from-turf via-lime to-transparent"
       />
-      <p className="font-display text-5xl font-extrabold text-turf transition-colors duration-300 group-hover:text-pitch">
-        <Counter to={value} suffix={suffix} />
-      </p>
-      <p className="mt-2 text-sm text-stone transition-colors duration-300 group-hover:text-ink">
-        {label}
-      </p>
+      <div className="relative z-10">
+        <p className="font-display text-5xl font-extrabold text-lime">
+          <Counter to={value} suffix={suffix} />
+        </p>
+        <p className="mt-2 text-sm text-chalk/80">
+          {label}
+        </p>
+      </div>
     </motion.div>
   );
 }

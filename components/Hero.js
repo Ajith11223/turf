@@ -157,7 +157,6 @@ export default function Hero() {
           </motion.g>
         </svg>
 
-        {/* 4 — a ball rolls across the halfway line */}
         <motion.div
           initial={{ x: "-10vw", y: 0, opacity: 0 }}
           animate={{ x: "112vw", y: [0, -18, 12, 0], opacity: [0, 1, 1, 0] }}

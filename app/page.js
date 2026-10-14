@@ -4,8 +4,10 @@ import Hero from "@/components/Hero";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import LeadForm from "@/components/LeadForm";
 import PatternWaveLayer from "@/components/PatternWaveLayer";
+import SplashCursorLayer from "@/components/SplashCursorLayer";
+import ChromaGrid from "@/src/component/ChromaGrid";
 import ScrollStack, { ScrollStackItem } from "@/src/component/ScrollStack";
-import { Reveal, MaskedWords, Marquee, ImageReveal, TiltCard, StatCard } from "@/components/motion-bits";
+import { Reveal, MaskedWords, Marquee, ImageReveal, StatCard } from "@/components/motion-bits";
 import { stats, process as buildSteps, surfaces, partners } from "@/lib/site";
 import { getServices, getProjects, getTestimonials } from "@/lib/content";
 import { images } from "@/lib/images";
@@ -20,17 +22,8 @@ export default async function HomePage() {
 
   return (
     <>
+      <SplashCursorLayer />
       <Hero />
-
-      {/* Stats */}
-      <section className="wave-section relative border-b border-line bg-white">
-        <PatternWaveLayer />
-        <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-2 gap-px bg-line lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <StatCard key={s.label} value={s.value} suffix={s.suffix} label={s.label} delay={i * 0.1} />
-          ))}
-        </div>
-      </section>
 
       {/* Surfaces */}
       <section className="wave-section relative bg-white py-24 sm:py-32">
@@ -125,36 +118,46 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((s, i) => (
-              <Reveal key={s.slug} delay={(i % 3) * 0.08}>
-                <TiltCard className="h-full">
-                  <Link
-                    href={`/services/${s.slug}`}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition hover:border-turf"
-                  >
-                    <div className="relative h-44 overflow-hidden">
-                      <Image
-                        src={s.image || images.services[s.slug] || images.hero}
-                        alt={s.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="p-7">
-                      <h3 className="text-2xl">{s.title}</h3>
-                      <p className="mt-2 text-sm font-medium text-turf">{s.lead}</p>
-                      <p className="mt-4 text-sm leading-relaxed text-stone">{s.body}</p>
-                      <span className="mt-5 inline-block text-sm font-semibold text-turf">
-                        Read more
-                      </span>
-                    </div>
-                  </Link>
-                </TiltCard>
-              </Reveal>
-            ))}
+          <div className="mt-14">
+            <ChromaGrid
+              items={services.map((service) => ({
+                image: service.image || images.services[service.slug] || images.hero,
+                alt: service.title,
+                title: service.title,
+                subtitle: service.lead || service.body,
+                accent: "#9ede3f",
+                target: "_self",
+                url: `/services/${service.slug}`
+              }))}
+              columns={3}
+              minCardWidth={250}
+              gap={20}
+              radius={240}
+              softness={0.7}
+              dim={0.1}
+              glow={0.45}
+              borderGlow={0.5}
+              aspectRatio="4 / 3"
+              cardRadius={8}
+              theme="light"
+            />
           </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="wave-section relative border-b border-line bg-white">
+        <PatternWaveLayer />
+        <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-4 px-5 py-10 sm:grid-cols-2 sm:gap-5 sm:px-8 sm:py-14 lg:grid-cols-4">
+          {stats.map((s, i) => (
+            <StatCard
+              key={s.label}
+              value={s.value}
+              suffix={s.suffix}
+              label={s.label}
+              delay={i * 0.1}
+            />
+          ))}
         </div>
       </section>
 
@@ -302,6 +305,7 @@ export default async function HomePage() {
           </Reveal>
         </div>
       </section>
+
     </>
   );
 }
